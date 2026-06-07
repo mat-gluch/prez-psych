@@ -1,0 +1,39 @@
+name: Build PPTX
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - generate_presentation.py
+      - .github/workflows/build-pptx.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-pptx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependency
+        run: pip install python-pptx
+
+      - name: Generate presentation
+        run: python generate_presentation.py
+
+      - name: Upload presentation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: praca_w_zespole_medycznym
+          path: praca_w_zespole_medycznym.pptx
+          if-no-files-found: error
