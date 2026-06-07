@@ -9,6 +9,9 @@ on:
       - .github/workflows/build-pptx.yml
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-pptx:
     runs-on: ubuntu-latest
