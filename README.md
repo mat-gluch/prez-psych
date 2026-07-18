@@ -6,7 +6,7 @@ Plik `assets/papal_primarch_pixel_art.png` jest generowany deterministycznie prz
 ### Regeneracja
 
 ```bash
-cd /home/runner/work/prez-psych/prez-psych
+cd <repo-root>
 python -m pip install pillow
 python scripts/generate_papal_primarch_pixel_art.py
 ```

@@ -22,11 +22,9 @@ PALETTE = {
     "face": (237, 208, 184, 255),
     "line": (34, 24, 22, 255),
     "glow": (255, 245, 215, 255),
+    "ground_shadow": (18, 16, 24, 255),
+    "pillar": (45, 43, 58, 255),
 }
-
-
-def draw_centered_ellipse(draw: ImageDraw.ImageDraw, box, color):
-    draw.ellipse(box, fill=color)
 
 
 def main() -> None:
@@ -35,14 +33,14 @@ def main() -> None:
 
     # Atmospheric background
     draw.rectangle((0, 44, 63, 63), fill=PALETTE["fog"])
-    draw.rectangle((0, 50, 63, 63), fill=(18, 16, 24, 255))
+    draw.rectangle((0, 50, 63, 63), fill=PALETTE["ground_shadow"])
     for x in range(4, 60, 8):
-        draw.rectangle((x, 46, x + 2, 49), fill=(45, 43, 58, 255))
+        draw.rectangle((x, 46, x + 2, 49), fill=PALETTE["pillar"])
 
     # Energy halo
-    draw_centered_ellipse(draw, (16, 1, 48, 23), PALETTE["halo_outer"])
-    draw_centered_ellipse(draw, (19, 4, 45, 20), PALETTE["halo_inner"])
-    draw_centered_ellipse(draw, (22, 7, 42, 17), PALETTE["bg"])
+    draw.ellipse((16, 1, 48, 23), fill=PALETTE["halo_outer"])
+    draw.ellipse((19, 4, 45, 20), fill=PALETTE["halo_inner"])
+    draw.ellipse((22, 7, 42, 17), fill=PALETTE["bg"])
 
     # Shoulder silhouette for monumental look
     draw.polygon(
